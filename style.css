@@ -1,0 +1,68 @@
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body {
+	font-family: Arial, Tahoma;
+	padding: 10px 20px; 
+	margin: 0;
+	background-color: #ffffff;
+}
+.content {
+	min-width: 830px;
+}
+#game {
+	display: block;
+	margin: 0;
+}
+#info {
+	border: 1px solid #000000;
+	background-color: #C4C4C4;
+}
+#dialog {
+	background-color: #ffffff;
+	width: 305px;
+	position: absolute;
+	padding: 20px;
+	border: 1px solid #000000;
+	top: 160px;
+	left: 170px;
+	display: none;
+}
+#dialog .title {
+	text-align: center;
+	margin: 0;
+}
+#dialog .body {
+	float: left;
+    width: 100%;
+}
+#dialog .rating {
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+    float: left;
+    list-style: none outside none;
+    padding: 0;
+    width: 100%;
+}
+#dialog .rating li {
+	border-bottom: 1px solid #000000;
+    float: left;
+    padding: 5px 10px;
+    width: 100%;
+}
+#dialog .rating li:nth-child(even) {
+	background-color: #E0ECFF;
+}
+#dialog .rating li:nth-child(odd) {
+	background-color: #2A5DB0;
+	color: white;
+}
+#dialog .rating li .nickname {
+	float: left;
+}
+#dialog .rating li .points{
+	float: right;
+}
