@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Game</title>
-		<link type="text/css" rel="stylesheet" href="style.css">
-	</head>
+    <head>
+        <title>Game</title>
+        <link type="text/css" rel="stylesheet" href="style.css">
+    </head>
 
-	<body>
-		<h1>Swell Foop</h1>
-		<div id="game"></div>
+    <body>
+        <h1>Swell Foop</h1>
+
+        <div id="game"></div>
         <button id="new-game">Start new game</button>
 
-		<script src="js/utils.js"></script>
-		<script src="js/SwellFoop.js"></script>
-		<script src="js/Field.js"></script>
-		<script src="js/InfoPanel.js"></script>
-		<script src="js/RatingPanel.js"></script>
-		<script>
-			UTILS.addEvent(document, 'DOMContentLoaded', function () {
-				var field   = document.getElementById('game'),
+        <script src="js/utils.js"></script>
+        <script src="js/SwellFoop.js"></script>
+        <script src="js/Field.js"></script>
+        <script src="js/InfoPanel.js"></script>
+        <script src="js/RatingPanel.js"></script>
+        <script>
+            UTILS.addEvent(document, 'DOMContentLoaded', function () {
+                var field   = document.getElementById('game'),
                     game    = new SwellFoop(field);
 
                 UTILS.addEvent(document.getElementById('new-game'), 'click', function () {
                     game = new SwellFoop(field)
                 });
-			});
-		</script>
-	</body>
+            });
+        </script>
+    </body>
 </html>
