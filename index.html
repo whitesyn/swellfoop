@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Game</title>
-		<link type="text/css" rel="stylesheet" href="style.css">
-		<script type="text/javascript" src="main.js"></script>
-	</head>
+    <head>
+        <title>Game</title>
+        <link type="text/css" rel="stylesheet" href="style.css">
+    </head>
 
-	<body>
-		<h1>Swell Foop</h1>
-		<div class="content">
-			<canvas id="game"></canvas>
-			<canvas id="info"></canvas>
-			<div id="dialog">
-				<h3 class="title">High Scores</h3>
-				<div class="body">
-					<ul class="rating"></ul>
-				</div>
-				<div class="footer">
-					<input type="text" id="nickname" value="" maxlength="50" />
-					<input type="button" id="submit" value="Submit scores" />
-					<br />
-					<br />
-					<input type="button" id="newGame" value="New Game" />
-				</div>
-			</div>
-		</div>
-	</body>
+    <body>
+        <h1>Swell Foop</h1>
+
+        <div id="game"></div>
+        <button id="new-game">Start new game</button>
+
+        <script src="js/utils.js"></script>
+        <script src="js/SwellFoop.js"></script>
+        <script src="js/Field.js"></script>
+        <script src="js/InfoPanel.js"></script>
+        <script src="js/RatingPanel.js"></script>
+        <script>
+            UTILS.addEvent(document, 'DOMContentLoaded', function () {
+                var field   = document.getElementById('game'),
+                    game    = new SwellFoop(field);
+
+                UTILS.addEvent(document.getElementById('new-game'), 'click', function () {
+                    game = new SwellFoop(field)
+                });
+            });
+        </script>
+    </body>
 </html>
