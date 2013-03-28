@@ -26,12 +26,12 @@ var SwellFoop = (function ($, w, undef) {
 			throw new Error('Please specify container element for the game');
 		}
 
-		that.field          = null;
-		that.infoPanel      = null;
-		that.ratingPanel    = null;
+		that.field = null;
+		that.infoPanel = null;
+		that.ratingPanel = null;
 
-		that.container  = container;
-		that.settings   = $.merge(settings, that.defaultSettings);
+		that.container = container;
+		that.settings = $.merge(settings, that.defaultSettings);
 
 		that.settings.onPointsAdded = function (points, total) {
 			that._onPointsAdded(points, total);
@@ -51,11 +51,11 @@ var SwellFoop = (function ($, w, undef) {
 	SwellFoop.prototype = {
 
 		defaultSettings: {
-			colors:         ['red', 'green', 'blue'],
-			defaultColor:   'rgb(60,60,60)',
-			colsCount:      15,
-			rowsCount:      10,
-			blockSize:      40
+			colors:       ['red', 'green', 'blue'],
+			defaultColor: 'rgb(60,60,60)',
+			colsCount:    15,
+			rowsCount:    10,
+			blockSize:    40
 		},
 
 		/**
@@ -156,8 +156,8 @@ var SwellFoop = (function ($, w, undef) {
 		 * @private
 		 */
 		_onCompleted: function (points, blocks) {
-			var message = ((blocks == 0) ? 'You win!' : 'Game Over') + "\n"+ 'Do you want add result (' + points + ') to the rating?',
-				ls      = w.localStorage,
+			var message = ((blocks == 0) ? 'You win!' : 'Game Over') + "\n" + 'Do you want add result (' + points + ') to the rating?',
+				ls = w.localStorage,
 				results = JSON.parse(ls.getItem('results') || '[]'),
 				name
 
