@@ -6,11 +6,11 @@ SwellFoop.RatingPanel = (function ($, doc) {
      * @constructor
      */
     var RatingPanel = function () {
-        var that = this,
-            container = doc.createElement('div'),
-            resultEl = doc.createElement('div'),
-            headerEl = doc.createElement('h2'),
-            listEl = doc.createElement('ol')
+        var that        = this,
+            container   = doc.createElement('div'),
+            resultEl    = doc.createElement('div'),
+            headerEl    = doc.createElement('h2'),
+            listEl      = doc.createElement('ol')
 
         headerEl.classList.add('title');
         headerEl.innerText = 'Rating';
@@ -22,8 +22,8 @@ SwellFoop.RatingPanel = (function ($, doc) {
         container.appendChild(headerEl);
         container.appendChild(resultEl);
 
-        that.el = container;
-        that.resultEl = resultEl;
+        that.el         = container;
+        that.resultEl   = resultEl;
     };
 
     RatingPanel.prototype = {
@@ -34,10 +34,10 @@ SwellFoop.RatingPanel = (function ($, doc) {
          * @param   {Array} data    Array with rating results
          */
         setData: function (data) {
-            var that = this,
-                container = that.resultEl,
-                list = doc.createElement('ol'),
-                i = 0,
+            var that        = this,
+                container   = that.resultEl,
+                list        = doc.createElement('ol'),
+                i           = 0,
                 item,
                 result;
 

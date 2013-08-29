@@ -6,10 +6,10 @@ SwellFoop.InfoPanel = (function ($, doc) {
      * @constructor
      */
     var InfoPanel = function () {
-        var that = this,
-            container = doc.createElement('div'),
-            scoresEl = doc.createElement('div'),
-            resultEl = doc.createElement('div');
+        var that        = this,
+            container   = doc.createElement('div'),
+            scoresEl    = doc.createElement('div'),
+            resultEl    = doc.createElement('div');
 
         container.classList.add('info-panel');
         scoresEl.classList.add('scores');
@@ -18,9 +18,9 @@ SwellFoop.InfoPanel = (function ($, doc) {
         container.appendChild(scoresEl);
         container.appendChild(resultEl);
 
-        that.el = container;
-        that.scoresEl = scoresEl;
-        that.resultEl = resultEl;
+        that.el         = container;
+        that.scoresEl   = scoresEl;
+        that.resultEl   = resultEl;
 
         that.setScores(0);
         that.setResult(0);

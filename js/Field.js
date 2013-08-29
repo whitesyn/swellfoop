@@ -7,22 +7,22 @@ SwellFoop.Field = (function ($, doc, undef) {
      * @constructor
      */
     var Field = function (settings) {
-        var that = this,
-            blockSize = settings.blockSize,
-            field = doc.createElement('canvas');
+        var that        = this,
+            blockSize   = settings.blockSize,
+            field       = doc.createElement('canvas');
 
-        that.settings = settings;
-        field.width = settings.colsCount * blockSize;
-        field.height = settings.rowsCount * blockSize;
+        that.settings   = settings;
+        field.width     = settings.colsCount * blockSize;
+        field.height    = settings.rowsCount * blockSize;
 
-        field.classList.add('game-field');
-
-        that.el = field;
-        that.ctx = field.getContext('2d');
-        that.isLocked = false;
-        that._points = 0;
+        that.el         = field;
+        that.ctx        = field.getContext('2d');
+        that.isLocked   = false;
+        that._points    = 0;
 
         that._pointsCache = {};
+
+        field.classList.add('game-field');
 
         that._initEvents();
         that._initMap();
@@ -41,9 +41,9 @@ SwellFoop.Field = (function ($, doc, undef) {
             var that = this;
 
             $.addEvent(that.el, 'mousemove', function (e) {
-                var el = this,
-                    map = that._map,
-                    area = that._area,
+                var el      = this,
+                    map     = that._map,
+                    area    = that._area,
                     currentColor,
                     index;
 
@@ -96,15 +96,15 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _initMap: function () {
-            var that = this,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
-                colorsCount = settings.colors.length,
-                blocksCount = rowsCount * colsCount,
-                blocksPerColor = blocksCount / colorsCount,
-                map = new Int8Array(blocksCount),
-                blocks = [],
+            var that            = this,
+                settings        = that.settings,
+                rowsCount       = settings.rowsCount,
+                colsCount       = settings.colsCount,
+                colorsCount     = settings.colors.length,
+                blocksCount     = rowsCount * colsCount,
+                blocksPerColor  = blocksCount / colorsCount,
+                map             = new Int8Array(blocksCount),
+                blocks          = [],
                 i = 0,
                 j;
 
@@ -125,9 +125,9 @@ SwellFoop.Field = (function ($, doc, undef) {
                 map[i] = blocks[i].color;
             }
 
-            that._blocksCount = blocksCount;
-            that._map = map;
-            that._area = new Int8Array(blocksCount);
+            that._blocksCount   = blocksCount;
+            that._map           = map;
+            that._area          = new Int8Array(blocksCount);
             that._selectedCount = 0;
         },
 
@@ -143,8 +143,10 @@ SwellFoop.Field = (function ($, doc, undef) {
             var that = this;
 
             that.isLocked = true;
+
             that._rebuildColumns(from, to);
             that._shiftColumns(from);
+
             that.isLocked = false;
         },
 
@@ -157,11 +159,11 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _rebuildColumns: function (from, to) {
-            var that = this,
-                map = that._map,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
+            var that        = this,
+                map         = that._map,
+                settings    = that.settings,
+                rowsCount   = settings.rowsCount,
+                colsCount   = settings.colsCount,
                 indexFrom,
                 i, j;
 
@@ -194,9 +196,9 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _shiftColumns: function (from) {
-            var that = this,
-                settings = that.settings,
-                colsCount = settings.colsCount,
+            var that        = this,
+                settings    = that.settings,
+                colsCount   = settings.colsCount,
                 i;
 
             for (; from < colsCount; ++from) {
@@ -222,8 +224,8 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _isEmptyColumn: function (columnIdx) {
-            var that = this,
-                settings = that.settings;
+            var that        = this,
+                settings    = that.settings;
 
             return that._map[(settings.rowsCount - 1) * settings.colsCount + columnIdx] === -1;
         },
@@ -237,11 +239,11 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _moveColumn: function (to, from) {
-            var that = this,
-                map = that._map,
-                length = map.length,
-                settings = that.settings,
-                colsCount = settings.colsCount;
+            var that        = this,
+                map         = that._map,
+                length      = map.length,
+                settings    = that.settings,
+                colsCount   = settings.colsCount;
 
             for (; to < length; to += colsCount, from += colsCount) {
                 map[to] = map[from];
@@ -257,16 +259,16 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _drawMap: function () {
-            var that = this,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
-                blockSize = settings.blockSize,
-                colors = settings.colors,
-                defaultColor = settings.defaultColor,
-                el = that.el,
-                ctx = that.ctx,
-                map = that._map,
+            var that            = this,
+                settings        = that.settings,
+                rowsCount       = settings.rowsCount,
+                colsCount       = settings.colsCount,
+                blockSize       = settings.blockSize,
+                colors          = settings.colors,
+                defaultColor    = settings.defaultColor,
+                el              = that.el,
+                ctx             = that.ctx,
+                map             = that._map,
                 i, j, index, x, y, fillStyle;
 
             el.width = el.width;
@@ -321,8 +323,8 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _getBlockIndexByXY: function (x, y) {
-            var settings = this.settings,
-                blockSize = settings.blockSize;
+            var settings    = this.settings,
+                blockSize   = settings.blockSize;
 
             return ((x / blockSize) << 0) + settings.colsCount * ((y / blockSize) << 0);
         },
@@ -333,16 +335,16 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _clearArea: function () {
-            var that = this,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
-                blockSize = settings.blockSize,
-                colors = settings.colors,
-                defaultColor = settings.defaultColor,
-                map = that._map,
-                area = that._area,
-                empty = new Int8Array(rowsCount * colsCount),
+            var that            = this,
+                settings        = that.settings,
+                rowsCount       = settings.rowsCount,
+                colsCount       = settings.colsCount,
+                blockSize       = settings.blockSize,
+                colors          = settings.colors,
+                defaultColor    = settings.defaultColor,
+                map             = that._map,
+                area            = that._area,
+                empty           = new Int8Array(rowsCount * colsCount),
                 i, j, index, x, y, fillStyle;
 
             for (i = 0; i < rowsCount; ++i) {
@@ -383,24 +385,24 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _buildArea: function (index) {
-            var that = this,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
-                blockCount = rowsCount * colsCount,
-                map = that._map,
-                area = that._area,
-                point = map[index],
+            var that            = this,
+                settings        = that.settings,
+                rowsCount       = settings.rowsCount,
+                colsCount       = settings.colsCount,
+                blockCount      = rowsCount * colsCount,
+                map             = that._map,
+                area            = that._area,
+                point           = map[index],
 
-                isTopRow = (index < colsCount),
-                isBottomRow = (index > blockCount - colsCount),
-                isFirstColumn = (index % colsCount === 0),
-                isLastColumn = (index % colsCount === colsCount - 1),
+                isTopRow        = (index < colsCount),
+                isBottomRow     = (index > blockCount - colsCount),
+                isFirstColumn   = (index % colsCount === 0),
+                isLastColumn    = (index % colsCount === colsCount - 1),
 
-                topPoint = isTopRow ? -1 : map[index - colsCount],
-                bottomPoint = isBottomRow ? -1 : map[index + colsCount],
-                leftPoint = isFirstColumn ? -1 : map[index - 1],
-                rightPoint = isLastColumn ? -1 : map[index + 1];
+                topPoint        = isTopRow ? -1 : map[index - colsCount],
+                bottomPoint     = isBottomRow ? -1 : map[index + colsCount],
+                leftPoint       = isFirstColumn ? -1 : map[index - 1],
+                rightPoint      = isLastColumn ? -1 : map[index + 1];
 
             if (point === -1) {
                 return false;
@@ -434,13 +436,13 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _drawArea: function () {
-            var that = this,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
-                blockSize = settings.blockSize,
-                area = that._area,
-                i = 0,
+            var that        = this,
+                settings    = that.settings,
+                rowsCount   = settings.rowsCount,
+                colsCount   = settings.colsCount,
+                blockSize   = settings.blockSize,
+                area        = that._area,
+                i           = 0,
                 index, j, x, y;
 
             for (; i < rowsCount; ++i) {
@@ -469,15 +471,15 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _destroyArea: function () {
-            var that = this,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
-                map = that._map,
-                area = that._area,
-                selectedCount = that._selectedCount,
-                changedCols = new Int8Array(colsCount),
-                i = 0,
+            var that            = this,
+                settings        = that.settings,
+                rowsCount       = settings.rowsCount,
+                colsCount       = settings.colsCount,
+                map             = that._map,
+                area            = that._area,
+                selectedCount   = that._selectedCount,
+                changedCols     = new Int8Array(colsCount),
+                i               = 0,
                 j, index;
 
             if (selectedCount < 2) {
@@ -554,11 +556,11 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _checkMapForArea: function () {
-            var that = this,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
-                i = rowsCount - 1,
+            var that        = this,
+                settings    = that.settings,
+                rowsCount   = settings.rowsCount,
+                colsCount   = settings.colsCount,
+                i           = rowsCount - 1,
                 j, index;
 
             for (; i >= 0; --i) {
@@ -585,23 +587,23 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _isBlockInArea: function (index) {
-            var that = this,
-                settings = that.settings,
-                rowsCount = settings.rowsCount,
-                colsCount = settings.colsCount,
-                blockCount = rowsCount * colsCount,
-                map = that._map,
-                point = map[index],
+            var that            = this,
+                settings        = that.settings,
+                rowsCount       = settings.rowsCount,
+                colsCount       = settings.colsCount,
+                blockCount      = rowsCount * colsCount,
+                map             = that._map,
+                point           = map[index],
 
-                isTopRow = (index < colsCount),
-                isBottomRow = (index > blockCount - colsCount),
-                isFirstColumn = (index % colsCount === 0),
-                isLastColumn = (index % colsCount === colsCount - 1),
+                isTopRow        = (index < colsCount),
+                isBottomRow     = (index > blockCount - colsCount),
+                isFirstColumn   = (index % colsCount === 0),
+                isLastColumn    = (index % colsCount === colsCount - 1),
 
-                topPoint = isTopRow ? -1 : map[index - colsCount],
-                bottomPoint = isBottomRow ? -1 : map[index + colsCount],
-                leftPoint = isFirstColumn ? -1 : map[index - 1],
-                rightPoint = isLastColumn ? -1 : map[index + 1];
+                topPoint        = isTopRow ? -1 : map[index - colsCount],
+                bottomPoint     = isBottomRow ? -1 : map[index + colsCount],
+                leftPoint       = isFirstColumn ? -1 : map[index - 1],
+                rightPoint      = isLastColumn ? -1 : map[index + 1];
 
             return (point !== -1) && (topPoint === point || bottomPoint === point || leftPoint === point || rightPoint === point);
         },
@@ -612,7 +614,7 @@ SwellFoop.Field = (function ($, doc, undef) {
          * @private
          */
         _complete: function () {
-            var that = this,
+            var that        = this,
                 blocksCount = that._blocksCount;
 
             that.isLocked = true;

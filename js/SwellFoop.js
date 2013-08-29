@@ -26,12 +26,12 @@ var SwellFoop = (function ($, w, undef) {
             throw new Error('Please specify container element for the game');
         }
 
-        that.field = null;
-        that.infoPanel = null;
-        that.ratingPanel = null;
+        that.field          = null;
+        that.infoPanel      = null;
+        that.ratingPanel    = null;
 
-        that.container = container;
-        that.settings = $.merge(settings, that.defaultSettings);
+        that.container      = container;
+        that.settings       = $.merge(settings, that.defaultSettings);
 
         that.settings.onPointsAdded = function (points, total) {
             that._onPointsAdded(points, total);
@@ -157,9 +157,9 @@ var SwellFoop = (function ($, w, undef) {
          */
         _onCompleted: function (points, blocks) {
             var message = ((blocks == 0) ? 'You win!' : 'Game Over') + "\n" + 'Do you want add result (' + points + ') to the rating?',
-                ls = w.localStorage,
+                ls      = w.localStorage,
                 results = JSON.parse(ls.getItem('results') || '[]'),
-                name
+                name;
 
             if (confirm(message)) {
                 name = prompt('Enter your name:', ls.getItem('lastName') || '').trim().substr(0, 100);

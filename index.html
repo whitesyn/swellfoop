@@ -18,8 +18,8 @@
         <script src="js/RatingPanel.js"></script>
         <script>
             UTILS.addEvent(document, 'DOMContentLoaded', function () {
-                var field   = document.getElementById('game'),
-                    game    = new SwellFoop(field);
+		        var field   = document.getElementById('game'),
+			        game    = new SwellFoop(field);
 
                 UTILS.addEvent(document.getElementById('new-game'), 'click', function () {
                     game = new SwellFoop(field)
